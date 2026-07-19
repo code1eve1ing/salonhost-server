@@ -175,6 +175,28 @@ async function updateSubdomain(req, res) {
 }
 
 /**
+ * @desc    Update template for the authenticated user
+ * @route   PATCH /api/v1/users/me/template
+ * @access  Private
+ */
+async function updateTemplate(req, res) {
+  const { template_id } = req.body;
+  if (!template_id) {
+    return res.status(400).json({ success: false, message: "template is required" });
+  }
+
+  // TODO: add template_id validation
+
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    { active_template: template_id },
+    { new: true }
+  );
+
+  res.status(200).json({ success: true, data: withComputedSubscription(user.toPublicJSON()) });
+}
+
+/**
  * @desc    Check subdomain availability (debounced on client)
  * @route   GET /api/v1/users/subdomain-check?value=xyz
  * @access  Public
@@ -212,4 +234,5 @@ module.exports = {
   updateUserDetails,
   updateSubdomain,
   checkSubdomain,
+  updateTemplate
 };

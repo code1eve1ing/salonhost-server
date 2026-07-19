@@ -189,7 +189,8 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true, index: true },
     name: { type: String, default: "" },
     avatar: { type: String, default: "" },
-
+    active_template: { type: String, default: "" },
+    
     // unique 8-digit counter starting at 00000000, stored as zero-padded string
     counter: { type: String, required: true, unique: true, index: true },
 
@@ -217,6 +218,7 @@ UserSchema.methods.toPublicJSON = function () {
     email: this.email,
     name: this.name,
     avatar: this.avatar,
+    active_template: this.active_template,
     counter: this.counter,
     subdomain: this.subdomain,
     branding_details: this.branding_details,

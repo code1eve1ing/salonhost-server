@@ -7,6 +7,7 @@ const {
   updateUserDetails,
   updateSubdomain,
   checkSubdomain,
+  updateTemplate
 } = require("../controllers/userController");
 const {
   getSubscription,
@@ -23,6 +24,7 @@ router.post("/", asyncHandler(createUser)); // called by Next.js OAuth callback
 router.get("/me", requireAuth, asyncHandler(getMe));
 router.patch("/me/details", requireAuth, asyncHandler(updateUserDetails));
 router.patch("/me/subdomain", requireAuth, asyncHandler(updateSubdomain));
+router.patch("/me/template", requireAuth, asyncHandler(updateTemplate));
 router.get("/me/subscription", requireAuth, asyncHandler(getSubscription));
 router.post("/me/subscription/purchase", requireAuth, asyncHandler(purchaseSubscription));
 
