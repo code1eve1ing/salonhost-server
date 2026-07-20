@@ -28,7 +28,7 @@ async function getTemplates(req, res) {
   const totalPages = Math.ceil(total / limit) || 1;
 
   const data = templates.map((t) => ({
-    id: t._id.toString(),
+    id: t._id,
     name: t.name,
     tag: t.tag,
     image_urls: t.image_urls,
@@ -67,7 +67,7 @@ async function getTemplateById(req, res) {
   res.status(200).json({
     success: true,
     data: {
-      id: template._id.toString(),
+      id: template._id,
       name: template.name,
       tag: template.tag,
       description: template.description,

@@ -9,7 +9,7 @@ async function getSalonBySubdomain(req, res) {
   const subdomain = (req.params.subdomain || "").toLowerCase().trim();
 
   const user = await User.findOne({ subdomain }).select(
-    "branding_details hero_details intro_details services_details gallery_details offers_details hours_details contact_details subdomain"
+    "branding_details active_template hero_details intro_details services_details gallery_details offers_details hours_details contact_details subdomain"
   );
 
   if (!user) {
@@ -28,6 +28,7 @@ async function getSalonBySubdomain(req, res) {
       offers_details: user.offers_details,
       hours_details: user.hours_details,
       contact_details: user.contact_details,
+      active_template: user.active_template
     },
   });
 }

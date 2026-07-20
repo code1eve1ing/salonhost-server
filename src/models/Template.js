@@ -4,6 +4,9 @@ const { Schema } = mongoose;
 
 const TemplateSchema = new Schema(
   {
+    _id: {
+      type: String,
+    },
     name: {
       type: String,
       required: [true, "Template name is required"],

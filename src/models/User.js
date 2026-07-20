@@ -189,7 +189,7 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true, index: true },
     name: { type: String, default: "" },
     avatar: { type: String, default: "" },
-    active_template: { type: String, default: "" },
+    active_template: { type: String, default: "1" },
     
     // unique 8-digit counter starting at 00000000, stored as zero-padded string
     counter: { type: String, required: true, unique: true, index: true },

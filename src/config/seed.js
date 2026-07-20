@@ -5,6 +5,7 @@ const Template = require("../models/Template");
 
 const templates = [
   {
+    _id: "1",
     name: "Elegant Rose",
     tag: "Hair Salon",
     description: "A soft, elegant design with warm tones for hair salons.",
@@ -17,6 +18,7 @@ const templates = [
     sort_order: 1,
   },
   {
+    _id: "2",
     name: "Modern Glam",
     tag: "Unisex Salon",
     description: "Bold modern layout for unisex salons and barbershops.",
@@ -28,6 +30,7 @@ const templates = [
     sort_order: 2,
   },
   {
+    _id: "3",
     name: "Serene Spa",
     tag: "Spa",
     description: "Calming visuals suited for spas and wellness centers.",
@@ -40,6 +43,7 @@ const templates = [
     sort_order: 3,
   },
   {
+    _id: "4",
     name: "Minimal Studio",
     tag: "Nail Studio",
     description: "Clean, minimal design ideal for nail studios.",
@@ -51,6 +55,7 @@ const templates = [
     sort_order: 4,
   },
   {
+    _id: "5",
     name: "Classic Barber",
     tag: "Barber",
     description: "Vintage-inspired theme for classic barbershops.",
@@ -62,6 +67,7 @@ const templates = [
     sort_order: 5,
   },
   {
+    _id: "6",
     name: "Beauty Bloom",
     tag: "Beauty Parlour",
     description: "Vibrant, friendly theme for beauty parlours.",
