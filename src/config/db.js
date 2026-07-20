@@ -1,20 +1,19 @@
 const mongoose = require("mongoose");
 
+let cached = global._mongoose;
+if (!cached) cached = global._mongoose = { conn: null, promise: null };
+
 async function connectDB() {
-  const uri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/salon_saas";
+  if (cached.conn) return cached.conn;
 
-  try {
+  if (!cached.promise) {
+    const uri = process.env.MONGO_URI;
     mongoose.set("strictQuery", true);
-    await mongoose.connect(uri);
-    console.log(`[db] MongoDB connected -> ${mongoose.connection.host}/${mongoose.connection.name}`);
-  } catch (err) {
-    console.error("[db] MongoDB connection failed:", err.message);
-    process.exit(1);
+    cached.promise = mongoose.connect(uri).then((m) => m);
   }
-
-  mongoose.connection.on("disconnected", () => {
-    console.warn("[db] MongoDB disconnected");
-  });
+  cached.conn = await cached.promise;
+  console.log(`[db] MongoDB connected -> ${mongoose.connection.host}`);
+  return cached.conn;
 }
 
 module.exports = connectDB;
