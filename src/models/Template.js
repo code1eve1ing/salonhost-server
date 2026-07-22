@@ -47,6 +47,21 @@ const TemplateSchema = new Schema(
       type: Number,
       default: 0,
     },
+    html_generator: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    css: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    js: {
+      type: String,
+      trim: true,
+      default: "",
+    }
   },
   {
     timestamps: true, // adds createdAt, updatedAt

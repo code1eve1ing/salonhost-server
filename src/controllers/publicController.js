@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Template = require("../models/Template");
 
 /**
  * @desc    Get public salon page data by subdomain (for salon.my-site.in)
@@ -12,6 +13,19 @@ async function getSalonBySubdomain(req, res) {
     "branding_details active_template hero_details intro_details services_details gallery_details offers_details hours_details contact_details subdomain"
   );
 
+  const { html_generator, css, js } = await Template.findById(user.active_template).select('html_generator css js')
+
+  const generateHTML = eval(`(${html_generator})`);
+  const html = generateHTML({
+    branding: user.branding_details,
+    hero: user.hero_details,
+    intro: user.intro_details,
+    services: user.services_details,
+    gallery: user.gallery_details,
+    hours: user.hours_details,
+    contact: user.contact_details,
+  });
+
   if (!user) {
     return res.status(404).json({ success: false, message: "Salon not found" });
   }
@@ -19,16 +33,9 @@ async function getSalonBySubdomain(req, res) {
   res.status(200).json({
     success: true,
     data: {
-      subdomain: user.subdomain,
-      branding_details: user.branding_details,
-      hero_details: user.hero_details,
-      intro_details: user.intro_details,
-      services_details: user.services_details,
-      gallery_details: user.gallery_details,
-      offers_details: user.offers_details,
-      hours_details: user.hours_details,
-      contact_details: user.contact_details,
-      active_template: user.active_template
+      html,
+      css,
+      js
     },
   });
 }
