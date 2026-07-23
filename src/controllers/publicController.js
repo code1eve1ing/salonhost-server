@@ -22,6 +22,7 @@ async function getSalonBySubdomain(req, res) {
     intro: user.intro_details,
     services: user.services_details,
     gallery: user.gallery_details,
+    offers: user.offers_details,
     hours: user.hours_details,
     contact: user.contact_details,
   });
